@@ -1,0 +1,64 @@
+﻿@using Mvc_Project.Utility;
+@model List<Kitap>
+@if (TempData["success"] != null)
+{
+    <h2 style="color:red">@TempData["success"]</h2>
+}
+<div class="container">
+    <div class="row pt-3 pb-4">
+        <div>
+            <h1>Kitap Listesi</h1>
+        </div>
+    </div>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Adı</th>
+                <th>Yazar</th>
+                <th>Tanım</th>
+                <th>Fiyat</th>
+                <th>Kitap Türü</th>
+                @if(User.IsInRole(UserRoles.Role_Admin))
+                    {
+                <th></th>
+                <th></th>
+                    }
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.Id</td>
+                    <td>@item.KitapAdi</td>
+                    <td>@item.Yazar</td>
+                    <td>@item.Tanim</td>
+                    <td>@item.Fiyat</td>
+                    <td>@item.KitapTuru.Ad</td>
+                    @if(User.IsInRole(UserRoles.Role_Admin))
+                    {
+                        <td>
+                            <a asp-controller="Kitap" asp-action="AddUpdate" asp-route-id="@item.Id" type="button" class="btn btn-success" style="width:250px">Güncelle</a>
+                        </td>
+                        <td>
+                            <a asp-controller="Kitap" asp-action="Delete" asp-route-id="@item.Id" type="button" class="btn btn-danger" style="width:250px">Sil</a>
+                        </td>
+                    }
+                    
+                </tr>
+            }  
+        </tbody>
+    </table>
+    @if (User.IsInRole(UserRoles.Role_Admin))
+    {
+        <div class="row pt-3 pb-2">
+            <div>
+                <a asp-controller="Kitap" asp-action="AddUpdate" class="btn btn-lg btn-primary" type="button">
+                    Yeni Kitap Oluştur
+                </a>
+            </div>
+        </div>
+    }
+    
+</div>

@@ -1,0 +1,36 @@
+﻿@*<h2>Yeni Kitap Türü Ekle</h2>*@
+@model Kiralama
+<form method="post">
+    <div class="row">
+            <div class="border p-3 mt-5">
+                <div class="row pb-3">
+                    <h2 class="text-primary"> @(Model == null ? "Ekle" : "Güncelle")</h2>
+                    <hr />
+                </div>
+                <div class="mb-3">
+                <label asp-for="OgranciId" class="p-0"></label>
+                <input asp-for="OgranciId" class="form-control">
+                <span asp-validation-for="OgranciId" class="text-danger"></span>
+                </div>
+                <div class="mb-3">
+                    <label asp-for="KitapId" class="p-0"></label>
+                <select asp-for="KitapId" asp-items="ViewBag.KitapList" class="form-select"></select>
+                </div>
+                @if (Model != null)
+                {
+                    <button type="submit" class="btn btn-lg btn-primary" style="width:250px">
+                        Güncelle
+                    </button>
+                }
+                else
+                {
+                    <button type="submit" class="btn btn-lg btn-primary" style="width:250px">
+                        Kiralama
+                    </button>
+                }
+                <a asp-controller="Kiralama" asp-action="Index" class="btn btn-lg btn-primary" style="width:250px">
+                    Kiralamalara Geri Dön
+                </a>
+            </div>
+    </div>
+</form>

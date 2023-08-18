@@ -1,0 +1,46 @@
+﻿@model List<Kiralama>
+@if (TempData["success"] != null)
+{
+    <h2 style="color:red">@TempData["success"]</h2>
+}
+<div class="container">
+    <div class="row pt-3 pb-4">
+        <div>
+            <h1>Kitap Kiralama Listesi</h1>
+        </div>
+    </div>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Öğrenci Id</th>
+                <th>Kitap Id</th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.Id</td>
+                    <td>@item.OgranciId</td>
+                    <td>@item.Kitap.KitapAdi</td>
+                    <td>
+                        <a asp-controller="Kiralama"  asp-action="AddUpdate" asp-route-id="@item.Id" type="button" class="btn btn-success" style="width:250px">Güncelle</a>
+                    </td>
+                    <td>
+                        <a asp-controller="Kiralama" asp-action="Delete" asp-route-id="@item.Id" type="button" class="btn btn-danger" style="width:250px">Sil</a>
+                    </td>
+                </tr>
+            }  
+        </tbody>
+    </table>
+    <div class="row pt-3 pb-2">
+        <div>
+            <a asp-controller="Kiralama" asp-action="AddUpdate" class="btn btn-lg btn-primary" type="button">
+                Yeni Kiralama Kaydı Oluştur
+            </a>
+        </div>
+    </div>
+</div>
