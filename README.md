@@ -7,5 +7,5 @@ email:admin@gmail.com
 password:Admin20$
 
 User
-email:zeynoaydnn@gmail.com
+email:mami@gmail.com
 password:Mamic20$
